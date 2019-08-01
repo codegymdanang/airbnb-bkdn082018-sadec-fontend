@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(currentUser.accessToken);
+   }
+
+  isLogin() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.accessToken) return true;
+    else return false;
   }
 
   myStyles = {'color': 'white'}
@@ -30,5 +39,10 @@ export class HeaderComponent implements OnInit {
     if (e) {
       e.style['background-color'] = '#1976d2';
     }
+  }
+
+  logout(){
+    this.authenticationService.logout();
+    // this.isLogin = false;
   }
 }

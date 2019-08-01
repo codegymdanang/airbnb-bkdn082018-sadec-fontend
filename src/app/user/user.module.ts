@@ -10,13 +10,15 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { HomeDetailsComponent } from './pages/home-details/home-details.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { SharedModule } from '../shared';
 
 @NgModule({
-  declarations: [LoginComponent, HomesComponent, RegisterComponent, UserComponent, UserDetailsComponent, HomeDetailsComponent, NotFoundComponent],
+  declarations: [LoginComponent, HomesComponent, UserComponent, RegisterComponent, UserDetailsComponent, HomeDetailsComponent, NotFoundComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule
   ]
 })

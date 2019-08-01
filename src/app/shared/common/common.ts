@@ -16,4 +16,4 @@ export function handleError (error: HttpErrorResponse) {
   }
   return throwError(
     'Something bad happened; please try again later.');
-  }
+  };
