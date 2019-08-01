@@ -1,0 +1,72 @@
+<h2>Đăng ký</h2>
+<form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+
+    <div class="form-group">
+        <label for="username">Tên người dùng</label>
+        <input type="text" [(ngModel)]="user.tenNguoiDung" class="form-control" id="username" name="username" #username="ngModel" required minlength="3" (keyup)="onUsernameKeyUp()"/>
+        <div *ngIf="(submitted || !username.pristine) && username.errors || isExist" class="alert alert-danger">
+            <div *ngIf="isExist">Tên người dùng đã tồn tại</div>
+            <div *ngIf="username.errors.required">Bạn chưa nhập tên người dùng</div>
+            <div *ngIf="username.errors.minlength">Tên người dùng ít nhất 3 kí tự</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" [(ngModel)]="user.matKhau" class="form-control" id="password" name="password" #password="ngModel" required minlength="8"/>
+        <div *ngIf="(submitted || !password.pristine) && password.errors" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Bạn chưa nhập mật khẩu</div>
+            <div *ngIf="password.errors.minlength">Mật khẩu tối thiểu 8 kí tự</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="reenter_password">Nhập lại mật khẩu</label>
+        <input type="password" #re_pw id="reenter_password" name="reenter_password" class="form-control"  [ngClass]="isSame && isDirty ? 'same' : 'different'" (keyup)="onRePWKeyUp(re_pw.value, password.value)" required/>
+        <div *ngIf="!isSame" class="alert alert-danger">
+            Mật khẩu không trùng
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Họ và tên</label>
+        <input type="text" [(ngModel)]="user.hoTen" class="form-control" id="name" name="name" #name="ngModel" required minlength="3" maxlength="15" />
+        <div *ngIf="(submitted || !name.pristine) && name.errors" class="alert alert-danger">
+            <div *ngIf="name.errors.required">Bạn chưa nhập tên</div>
+            <div *ngIf="name.errors.minlength">Tên ít nhất 3 kí tự</div>
+            <div *ngIf="name.errors.maxlength">Tên tối đa nhất 15 kí tự</div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">Số điện thoại</label>
+        <input type="text" [(ngModel)]="user.soDienThoai" class="form-control" id="phone" name="phone" #phone="ngModel" required pattern="^0[0-9]{9}" />
+        <div *ngIf="(submitted || !phone.pristine) && phone.errors" class="alert alert-danger">
+            <div *ngIf="phone.errors.required">Bạn chưa nhập số điện thoại</div>
+            <div *ngIf="phone.errors.pattern">Số điện thoại không hợp lệ</div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email" #email="ngModel" required />
+        <div *ngIf="(submitted || !email.pristine) && email.errors" class="alert alert-danger">
+            <div *ngIf="email.errors.required">Bạn chưa nhập email</div>
+            <div *ngIf="email.errors.email">Email không hợp lệ</div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="address">Địa chỉ</label>
+        <input type="text" [(ngModel)]="user.diaChi" class="form-control" id="address" name="address" #address="ngModel" required />
+        <div *ngIf="(submitted || !address.pristine) && address.errors" class="alert alert-danger">
+            <div *ngIf="address.errors.required">Bạn chưa nhập địa chỉ</div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn btn-primary" [disabled]="loading">Đăng ký</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a [routerLink]="['/login']" class="btn btn-link">Thoát</a>
+    </div>
+</form>

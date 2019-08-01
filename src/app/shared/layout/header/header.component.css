@@ -1,0 +1,21 @@
+.navbar-inverse{
+    padding: 5px;
+    font-size: 15px;
+    background-color: #1976d2;
+    border: none;
+}
+.navbar-inverse li a, .navbar-brand{
+    color:white;
+}
+.dropdown-menu li a{
+    color: #000;
+}
+.navbar-brand{
+    font-size: 20px; 
+}
+.top-bar{
+    background-color: #1976d2;
+}
+b {
+    font-size: 30px;
+}
