@@ -7,9 +7,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { JwtInterceptor, ErrorInterceptor } from './core/helper';
+import { AddPhotoComponent } from './host/pages/add-photo/add-photo.component';
 @NgModule({
   declarations: [
     AppComponent,
+    AddPhotoComponent,
   ],
   imports: [
     BrowserModule,

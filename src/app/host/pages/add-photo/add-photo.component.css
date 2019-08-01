@@ -1,0 +1,47 @@
+#table{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px; 
+    box-sizing: inherit; margin-bottom: 10px;
+    padding: 20px;
+    box-sizing: inherit;
+    line-height: 1.6em;
+    padding: 15px;
+}
+
+#title{
+    color: rgb(46, 45, 45);
+    padding: 3px;
+}
+
+#add-photo{
+    height: 250px;
+    border-radius: 5px;
+    border: 0.5px solid lightgrey;
+    box-shadow: 3px lightblue;
+    /* background-color: blue; */
+}
+
+#photo{
+    background-color: rgb(202, 195, 195);
+    height: 200px;
+    width: 150px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+#icon{
+    position: absolute;
+    top: 46%;
+    width: 11%;
+    text-align: center;
+}
+
+hr{
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    color: black;
+}
