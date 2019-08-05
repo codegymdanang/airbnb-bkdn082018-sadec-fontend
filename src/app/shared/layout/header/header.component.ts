@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,17 +9,22 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  username: string;
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser.accessToken);
+    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // console.log(currentUser.accessToken);
    }
 
   isLogin() {
+    if (this.authenticationService.isTokenExpired()) return false;
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.accessToken) return true;
-    else return false;
+    this.username = currentUser.username;
+    return true;
   }
 
   myStyles = {'color': 'white'}
@@ -43,6 +49,7 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.authenticationService.logout();
+    this.router.navigate(['logout']);
     // this.isLogin = false;
   }
 }

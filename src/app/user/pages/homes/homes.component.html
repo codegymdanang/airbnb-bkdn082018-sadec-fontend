@@ -42,12 +42,12 @@
     </div>
     
     <div>
-        <a class="col-sm-3" *ngFor="let ngoiNha of danhSachNgoiNha">
-            <img [src]="ngoiNha.image" alt="Hinh anh ngoi nha" width=100% height = 300>
-            <h3>{{ngoiNha.tenCanNha}}</h3>
-            <p>Địa chỉ: {{ngoiNha.diaChiNgoiNha}}</p>
-            <p *ngIf="ngoiNha.tinhTrang">Chưa được thuê</p>
-            <p *ngIf="!ngoiNha.tinhTrang">Đã được thuê</p>
+        <a class="col-sm-3" *ngFor="let ngoiNha of homes">
+            <img [src]="ngoiNha.hinhAnhNha[0]" [alt]="" width=100% height ="300px" />
+            <h3>{{ngoiNha.tenNha}}</h3>
+            <p>Địa chỉ: {{ngoiNha.diaChi}}</p>
+            <p *ngIf="!ngoiNha.tinhTrang">Chưa được thuê</p>
+            <p *ngIf="ngoiNha.tinhTrang">Đã được thuê</p>
         </a>
     </div>
 </div>

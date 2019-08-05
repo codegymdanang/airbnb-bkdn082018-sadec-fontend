@@ -1,11 +1,6 @@
-import { HttpHeaders, HttpErrorResponse } from '@angular/common/http'
-import { of, Observable,throwError } from 'rxjs'
-export const endpoint = 'http://localhost:8080';
-export const httpOptions = {
-    headers : new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { throwError } from 'rxjs'
+export const endpoint = 'http://localhost:8081';
 export function handleError (error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
     console.error('An error occurred:', error.error.message);
@@ -17,3 +12,6 @@ export function handleError (error: HttpErrorResponse) {
   return throwError(
     'Something bad happened; please try again later.');
   };
+export const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+}

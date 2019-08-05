@@ -7,6 +7,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { JwtInterceptor, ErrorInterceptor } from './core/helper';
+import { HostModule } from './host/host.module';
+import { AuthGuard } from './core/guards';
+import { FileUploadModule } from 'ng2-file-upload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +19,14 @@ import { JwtInterceptor, ErrorInterceptor } from './core/helper';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    HostModule,
+    FileUploadModule,
     UserModule,
   ],
   providers: [
+    // AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

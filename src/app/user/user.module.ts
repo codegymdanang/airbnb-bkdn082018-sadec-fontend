@@ -11,6 +11,7 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
 import { HomeDetailsComponent } from './pages/home-details/home-details.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { SharedModule } from '../shared';
+import { AuthGuard } from '../core/guards';
 
 @NgModule({
   declarations: [LoginComponent, HomesComponent, UserComponent, RegisterComponent, UserDetailsComponent, HomeDetailsComponent, NotFoundComponent],
@@ -20,6 +21,9 @@ import { SharedModule } from '../shared';
     FormsModule,
     SharedModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class UserModule { }

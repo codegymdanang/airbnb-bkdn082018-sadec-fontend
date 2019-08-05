@@ -1,7 +1,6 @@
 import { Home } from './home';
-
 export class Image {
     id: number
-    hinhAnh: number[]
+    hinhAnh: Uint8Array
     ngoiNha: Home
 }

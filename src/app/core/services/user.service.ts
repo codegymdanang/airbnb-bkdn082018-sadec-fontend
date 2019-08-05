@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
-import { endpoint, httpOptions, handleError } from 'src/app/shared/common/common';
+import { endpoint, handleError, httpOptions } from 'src/app/shared/common/common';
 import { User } from '../models/user';
 import { catchError } from 'rxjs/operators';
 import { Config } from 'protractor';
@@ -14,9 +14,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
   register(user: User): Observable<User> {
-    return this.http.post<User>(endpoint + '/nguoi_dung', JSON.stringify(user), httpOptions)
+    return this.http.post<User>(`${endpoint}/nguoi_dung`, JSON.stringify(user), httpOptions)
             .pipe(catchError(handleError));
   }
 
@@ -26,12 +25,12 @@ export class UserService {
   }
 
   checkUserIsExist(tenNguoiDung: string): Observable<Boolean>{
-    return this.http.get<Boolean>(`${endpoint}/kiem_tra_nguoi_dung?name=${tenNguoiDung}`)
+    return this.http.get<Boolean>(`${endpoint}/kiem_tra_nguoi_dung?name=${tenNguoiDung}`, httpOptions)
             .pipe(catchError(handleError));
   }
 
   getUserByName(tenNguoiDung: string):Observable<User> {
-    return this.http.get<User>(`${endpoint}/nguoi_dung?name=${tenNguoiDung}`)
+    return this.http.get<User>(`${endpoint}/nguoi_dung?name=${tenNguoiDung}`, httpOptions)
             .pipe(catchError(handleError));
   }
 
