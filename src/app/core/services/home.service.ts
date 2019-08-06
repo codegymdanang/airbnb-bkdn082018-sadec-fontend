@@ -26,4 +26,20 @@ export class HomeService {
     return this.http.post<Home>(`${endpoint}/nha`,JSON.stringify(home), httpOptions)
       .pipe(catchError(handleError));
   }
+
+  getHomesByBedRoomNumber(number): Observable<Home[]> {
+    return this.http.get<Home[]>(`${endpoint}/nha/findBySoPhongNgu/${number}`, httpOptions)
+      .pipe(catchError(handleError));
+  }
+
+  getHomesByBathRoomNumber(number): Observable<Home[]> {
+    return this.http.get<Home[]>(`${endpoint}/nha/findBySoPhongTam/${number}`, httpOptions)
+      .pipe(catchError(handleError));
+  }
+
+  getHomesByPrice(min, max): Observable<Home[]> {
+    return this.http.get<Home[]>(`${endpoint}/nha/findByGiaPhongTheoDem?min=${min}&max=${max}`, httpOptions)
+      .pipe(catchError(handleError));
+  }
+  
 }

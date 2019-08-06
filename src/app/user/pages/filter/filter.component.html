@@ -1,0 +1,50 @@
+<div class="btn-group loc" style="width: 100%">
+    <div class="btn-group">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+                Khu vực <span class="caret" ></span>
+            </button>
+            <!-- <ul class="dropdown-menu" role="menu">
+                <li *ngFor="let khoangTien of danhSachKhoangTien">
+                    <a href="#"> {{khoangTien.min | currency}}  -  {{khoangTien.max | currency}}</a>
+                </li>
+            </ul> -->
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Khoảng tiền <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li *ngFor="let khoangTien of danhSachKhoangTien | async">
+                <a [routerLink]="['/homes/khoang-tien', khoangTien.min, khoangTien.max]">
+                    {{khoangTien.min | currency: 'VND' : "symbol" : '3.0-3' : 'vi'}} &nbsp;&nbsp; -&nbsp;&nbsp;  {{khoangTien.max | currency: 'VND' : "symbol" : '3.0-3' : 'vi'}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Số lượng phòng ngủ <span class="caret"></span></button>
+        <ul class="dropdown-menu double" role="menu">
+            <li *ngFor="let phongNgu of soLuongPhong | async">
+                <a [routerLink]="['/homes/so-phong-ngu', phongNgu.soLuong]">
+                    {{phongNgu.soPhongBangChu}} &nbsp;&nbsp; <i class="fas fa-bed"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Số lượng phòng tắm <span class="caret"></span></button>
+        <ul class="dropdown-menu double" role="menu">
+            <li *ngFor="let phongTam of soLuongPhong | async">
+                <a [routerLink]="['/homes/so-phong-tam', phongTam.soLuong]"> 
+                    {{phongTam.soPhongBangChu}} &nbsp;&nbsp; <i class="fa fa-bath"></i>
+                </a>
+            </li>
+        </ul>
+    </div>    
+</div>
+<!-- <app-homes ></app-homes> -->

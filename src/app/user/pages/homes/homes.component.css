@@ -1,7 +1,11 @@
-.dropdown-toggle{
-    width: 250px;
-}
 
 .loc{
     padding-top: 10px;
 }
+
+.ngoi-nha{
+    border: solid 1px gray;
+    margin: 5px;
+    padding: 10px 0;
+}
+

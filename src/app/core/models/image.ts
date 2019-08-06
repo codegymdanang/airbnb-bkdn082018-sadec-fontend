@@ -1,6 +1,6 @@
-import { Home } from './home';
+import { SafeUrl } from '@angular/platform-browser';
 export class Image {
     id: number
-    hinhAnh: Uint8Array
-    ngoiNha: Home
+    hinhAnh: ArrayBuffer
+    hinhAnhView: SafeUrl
 }

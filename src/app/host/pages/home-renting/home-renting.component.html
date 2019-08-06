@@ -9,21 +9,21 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner images" role="listbox">
                 <div *ngFor="let image of uploader.queue; index as i" [ngClass]=" !i ? 'item active' : 'item'">
-                    <img src="" [image]="image?._file" appImagePreview [alt]="image?.file?.name" resize-max-height="300px" resize-max-width=100% />
+                    <img class="home-image" [image]="image?._file" appImagePreview [alt]="image?.file?.name" resize-max-height="300px" resize-max-width=100% />
                 </div>
             </div>
         
             <a *ngIf="uploader?.queue?.length > 1" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only">Trước</span>
             </a>
             <a *ngIf="uploader?.queue?.length > 1" class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+                <span class="sr-only">Sau</span>
             </a>
         </div>
         <input type="file" ng2FileSelect [uploader]="uploader" accept='image/*' multiple/>
-        <h5>Your files: {{ uploader?.queue?.length }}</h5>
+        <h5>Số hình ảnh: {{ uploader?.queue?.length }}</h5>
 
         <table class="table">
             <tbody>
@@ -33,7 +33,7 @@
                 <td nowrap>
                     <button type="button" class="btn btn-danger btn-xs"
                             (click)="item.remove()">
-                        <span class="glyphicon glyphicon-trash"></span> Remove
+                        <span class="glyphicon glyphicon-trash"></span> Xóa
                     </button>
                 </td>
             </tr>
@@ -45,7 +45,7 @@
         <form (ngSubmit)="onSubmit(homeForm)" #homeForm="ngForm">
             <div class="form-group">
                 <label for="tenNha">Tên ngôi nhà</label>
-                <input type="text" [(ngModel)]="home.tenNha" class="form-control" id="tenNha" name="tenNha" #tenNha="ngModel" required minlength="3"/>
+                <input type="text" [(ngModel)]="home.tenNha" class="form-control" id="tenNha" name="tenNha" #tenNha="ngModel" minlength="3" required autofocus/>
                 <div *ngIf="(submitted || !tenNha.pristine) && tenNha.errors " class="alert alert-danger">
                     <div *ngIf="tenNha.errors.required">Bạn chưa nhập tên ngôi nhà</div>
                     <div *ngIf="tenNha.errors.minlength">Tên ngôi nhà ít nhất 3 kí tự</div>
@@ -54,11 +54,16 @@
         
             <div class="form-group">
                 <label for="loaiNha">Loại nhà</label>
-                <select [(ngModel)]="home.loaiNha" class="form-control" id="loaiNha" name="loaiNha" required>
-                    <option name="loaiNha" selected>Nhà trọ</option>
-                    <option name="loaiNha">Nhà ở</option>
-                    <option name="loaiNha">Biệt thự</option>
+                <select [(ngModel)]="home.loaiNha" class="form-control" id="loaiNha" name="loaiNha" #loaiNha="ngModel" required>
+                    <option>Homestay</option>
+                    <option>Nhà trọ</option>
+                    <option>Nhà ở</option>
+                    <option>Khách sạn</option>
+                    <option >Biệt thự</option>
                 </select>
+                <div *ngIf="(submitted || !loaiNha.pristine) && loaiNha.errors " class="alert alert-danger">
+                    <div *ngIf="loaiNha.errors.required">Bạn chưa chọn loại nhà</div>
+                </div>
             </div>
     
             <div class="form-group">
@@ -70,18 +75,24 @@
             </div>
 
             <h3>Thông tin cụ thể</h3>
-            <div class="form-group">
+            <div class="form-group col-sm-6 phong-ngu">
                 <label for="soPhongNgu">Số phòng ngủ</label>
-                <select [(ngModel)]="home.soPhongNgu" class="form-control" id="soPhongNgu" name="soPhongNgu" required>
+                <select [(ngModel)]="home.soPhongNgu" class="form-control" id="soPhongNgu" name="soPhongNgu" #soPhongNgu="ngModel" required>
                     <option *ngFor="let soLuong of soLuongArray">{{soLuong}}</option>
                 </select>
+                <div *ngIf="(submitted || !soPhongNgu.pristine) && soPhongNgu.errors " class="alert alert-danger">
+                    <div *ngIf="soPhongNgu.errors.required">Bạn chưa chọn số phòng ngut</div>
+                </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-sm-6">
                 <label for="soPhongTam">Số phòng tắm</label>
-                <select [(ngModel)]="home.soPhongTam" class="form-control" id="soPhongTam" name="soPhongTam" required>
+                <select [(ngModel)]="home.soPhongTam" class="form-control" id="soPhongTam" name="soPhongTam" #soPhongTam="ngModel" required>
                     <option *ngFor="let soLuong of soLuongArray">{{soLuong}}</option>
                 </select>
+                <div *ngIf="(submitted || !soPhongTam.pristine) && soPhongTam.errors " class="alert alert-danger">
+                    <div *ngIf="soPhongTam.errors.required">Bạn chưa chọn số phòng ngut</div>
+                </div>
             </div>
             
             <div class="form-group">
@@ -103,7 +114,7 @@
             <div class="form-group">
                 <button class="btn btn-primary" [disabled]="loading">Đăng tin</button>
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                <a routerLink="" class="btn btn-link">Thoát</a>    
+                <a (click)="onClick()" class="btn btn-link">Thoát</a>    
             </div>
             
         </form>

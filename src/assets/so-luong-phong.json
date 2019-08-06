@@ -1,0 +1,13 @@
+[
+    {"soLuong": 0, "soPhongBangChu": "Không có"},
+    {"soLuong": 1, "soPhongBangChu": "1 phòng"},
+    {"soLuong": 2, "soPhongBangChu": "2 phòng"},
+    {"soLuong": 3, "soPhongBangChu": "3 phòng"},
+    {"soLuong": 4, "soPhongBangChu": "4 phòng"},
+    {"soLuong": 5, "soPhongBangChu": "5 phòng"},
+    {"soLuong": 6, "soPhongBangChu": "6 phòng"},
+    {"soLuong": 7, "soPhongBangChu": "7 phòng"},
+    {"soLuong": 8, "soPhongBangChu": "8 phòng"},
+    {"soLuong": 9, "soPhongBangChu": "9 phòng"},
+    {"soLuong": 10, "soPhongBangChu": "10 phòng"}
+]

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router'
-// import { isLogin } from 'src/app/shared/common/common';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,9 +33,8 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   isLogin() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.accessToken) return true;
-    else return false;
+    if (this.authenticationService.isTokenExpired()) return false;
+    else return true;
   }
 
   onSubmit(){

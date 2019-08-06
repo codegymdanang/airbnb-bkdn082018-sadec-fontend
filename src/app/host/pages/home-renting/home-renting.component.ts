@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { concat } from  'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home-renting',
@@ -20,7 +21,7 @@ export class HomeRentingComponent implements OnInit {
   imgUrls: any[] = [];
   message: string;
   num: number = 0;
-  soLuongArray: number[] = [1,2,3,4,5,6,7,8,9,10];
+  soLuongArray: number[] = [0,1,2,3,4,5,6,7,8,9,10];
   home: Home = new Home();
   uploader: FileUploader = new FileUploader({});
 
@@ -32,6 +33,7 @@ export class HomeRentingComponent implements OnInit {
   }
 
   constructor(
+      private location: Location,
       private router: Router,
       private uploadFileService: FileUploadService,
       private homeService: HomeService,
@@ -75,5 +77,9 @@ export class HomeRentingComponent implements OnInit {
                       this.router.navigate(['']);
                     })
             });
+  }
+
+  onClick() {
+      this.location.back();
   }
 }
