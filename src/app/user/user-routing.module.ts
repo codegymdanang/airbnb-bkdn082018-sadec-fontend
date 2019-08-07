@@ -14,7 +14,6 @@ const routes: Routes = [
       {path: 'login', component: LoginComponent},
       {path: 'join', component: RegisterComponent},
       {path: '', component: HomesComponent, pathMatch: 'full'},
-      {path: 'logout', redirectTo:''},
       {path: 'homes/so-phong-ngu/:soPhongNgu', component: HomesComponent},
       {path: 'homes/so-phong-tam/:soPhongTam', component: HomesComponent},
       {path: 'homes/khoang-tien/:min/:max', component: HomesComponent},

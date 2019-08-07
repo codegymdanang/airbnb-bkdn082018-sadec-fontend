@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 })
 export class HomeRentingComponent implements OnInit {
 
+  private previousUrl: string = undefined;
   loading = false;
   submitted = false;
   imgUrls: any[] = [];
@@ -37,8 +38,7 @@ export class HomeRentingComponent implements OnInit {
       private router: Router,
       private uploadFileService: FileUploadService,
       private homeService: HomeService,
-      private authService: AuthenticationService
-  ) { }
+      private authService: AuthenticationService) { }
 
   ngOnInit() { } 
 

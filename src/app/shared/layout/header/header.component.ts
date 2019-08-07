@@ -15,13 +15,10 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) { }
 
-  ngOnInit() {
-    // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // console.log(currentUser.accessToken);
-   }
+  ngOnInit() { }
 
-  isLogin() {
-    if (this.authenticationService.isTokenExpired()) return false;
+   isLoggedIn() {
+    if (!this.authenticationService.isLoggedIn()) return false;
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.username = currentUser.username;
     return true;
@@ -49,7 +46,6 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.authenticationService.logout();
-    this.router.navigate(['logout']);
-    // this.isLogin = false;
+    this.router.navigate(['']);
   }
 }

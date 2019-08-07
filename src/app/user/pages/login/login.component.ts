@@ -28,11 +28,12 @@ export class LoginComponent implements OnInit {
       password: ['',Validators.required]
     }),
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.isLoggedIn()) this.router.navigate(['']);
   }
 
   get f() { return this.loginForm.controls; }
 
-  isLogin() {
+  isLoggedIn() {
     if (this.authenticationService.isTokenExpired()) return false;
     else return true;
   }
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    if (!this.isLogin()) {
+    if (!this.isLoggedIn()) {
       this.authenticationService.login(this.f.username.value, this.f.password.value)
       .subscribe(
         data => {

@@ -38,6 +38,11 @@ export class AuthenticationService {
     return !(date.valueOf() > new Date().valueOf());
   }
 
+  isLoggedIn(): boolean {
+    // alert(this.isTokenExpired())
+    return !this.isTokenExpired();
+  }
+
   getUser(): Observable<User> {
     const decoded = jwt_decode(this.getToken());
     const id = decoded.sub;

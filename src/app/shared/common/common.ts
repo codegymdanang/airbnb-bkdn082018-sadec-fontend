@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { throwError } from 'rxjs'
-export const endpoint = 'http://localhost:8081';
+export const endpoint = 'http://localhost:8080/app';
 export function handleError (error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
     console.error('An error occurred:', error.error.message);

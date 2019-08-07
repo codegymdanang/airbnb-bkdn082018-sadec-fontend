@@ -16,8 +16,8 @@ registerLocaleData(localeVi, 'vi');
 })
 export class HomesComponent implements OnInit {
 
-    min;
-    max;
+    minPrice;
+    maxPrice;
     bedRoomNumber;
     bathRoomumber;
     homes: Home[] = [];
@@ -30,16 +30,19 @@ export class HomesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.min = this.route.snapshot.paramMap.get('min');
-        this.max = this.route.snapshot.paramMap.get('max');
-        this.bedRoomNumber = this.route.snapshot.paramMap.get('soPhongNgu');
-        this.bathRoomumber = this.route.snapshot.paramMap.get('soPhongTam');
-        if (!(this.bedRoomNumber === null)) {
+        this.route.params.subscribe(params => {
+            this.minPrice = params['min'];
+            this.maxPrice = params['max'];
+            this.bedRoomNumber = params['soPhongNgu'];
+            this.bathRoomumber = params['soPhongTam']
+        })
+        
+        if (!(this.bedRoomNumber === undefined)) {
             this.getHomesByBedRoomNumber(this.bedRoomNumber);
-        } else if (!(this.bathRoomumber === null)) {
+        } else if (!(this.bathRoomumber === undefined)) {
             this.getHomesByBathRoomNumber(this.bathRoomumber);
-        } else if ( !(this.min === null) && !(this.max === null)) {
-            this.getHomesByPrice(this.min, this.max)
+        } else if ( !(this.minPrice === undefined) && !(this.maxPrice === undefined)) {
+            this.getHomesByPrice(this.minPrice, this.maxPrice)
         } else {
             this.getHomes();
         }
